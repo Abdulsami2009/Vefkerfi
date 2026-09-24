@@ -1,131 +1,170 @@
-# Purpose
-Players who want to discover classic games but need help knowing where to start.
-## Primary user
-Anyone but espically old people
-## Problem
-getting people to use the website
-## Out of scope
+# Requirements: Classic Games Discovery
+
+## Purpose
+
+Give people a simple starting point for discovering classic games through
+browsing or direct title search.
+
+## Scope
+
+### In scope
+
+- Front desk/home page
+- Category browsing
+- Title search
+- Paginated results
+- Game details pages
+- Similar-game recommendations
+- Responsive layouts and empty-state handling
+
+### Out of scope
+
+- Accounts, favorites, and personalized collections
+- Purchasing, downloading, or launching games
+- User-submitted ratings or reviews
+- Age verification
+- Admin tools
+- Native mobile applications
 
 ## Functional requirements
-1. FR-01: The user can select a category such as genre, platform, or decade and view the games assigned to it.
-2. FR-02: The user can browse the collection through organized library sections.
-3. FR-03: The front desk is the initial page shown when the user opens the website.
-4. FR-04: The user can search for a game by entering part or all of its title.
-5. FR-05: The user can open a details page for a selected game.
+
+### Front desk
+
+- **FR-01:** The front desk MUST be the initial page.
+- **FR-02:** It MUST include a search field and search action.
+- **FR-03:** It MUST include a **Browse Categories** action.
+- **FR-04:** Submitting a search MUST open results for the entered term.
+- **FR-05:** **Browse Categories** MUST open the library view.
+
+### Library and categories
+
+- **FR-06:** The library MUST provide available categories, such as genre,
+  platform, and release decade.
+- **FR-07:** Selecting a category MUST show its games.
+- **FR-08:** Category results MUST show 12 games per page, alphabetically by
+  title.
+- **FR-09:** Category cards MUST show a thumbnail and title.
+- **FR-10:** Users MUST be able to navigate pages with **Previous** and **Next**.
+- **FR-11:** An empty category MUST show `No games found in this category.`
+
+### Search
+
+- **FR-12:** Users MUST be able to search all or part of a game title.
+- **FR-13:** Matching MUST be case-insensitive and results alphabetized.
+- **FR-14:** Search results MUST show no more than 20 games per page.
+- **FR-15:** Search cards MUST show a thumbnail, title, and release year.
+- **FR-16:** No matches MUST show `No results found for "<search term>".`
+- **FR-17:** Selecting a result MUST open its details page.
+
+### Game details
+
+- **FR-18:** The details page MUST show title, release year, developer, genre,
+  platform(s), image, description, and rating when available.
+- **FR-19:** Missing fields MUST show `Not Available`.
+- **FR-20:** A missing image MUST show `No image available`.
+- **FR-21:** A **Back** action MUST return to the previous view.
+- **FR-22:** Similar games SHOULD be shown when recommendations are available.
+
 ## Non-functional requirements
-1. NFR-01: The system should be able to work on different screen sizes. fx: mobile, laptop.
-2. NFR-02: The system response has to be fast.
-3. NFR-03: Should be able to access from different devices.
-## User stories
-1. US-01: As a classic game fan I want to select a category so that I can find games that interest me without having to know their names.
 
-PASS/FAIL: User can select a category and view all games in that category.
-PASS/FAIL: Games display 12 per page, sorted alphabetically by title, with thumbnail and title shown.
-PASS/FAIL: If category has no games, message displays: "No games found in this category."
-PASS/FAIL: User can navigate between pages using Previous/Next buttons.
-PASS/FAIL: User can select a game from the category to view its details.
+- **NFR-01:** All views MUST work on supported desktop, laptop, tablet, and
+  mobile sizes without horizontal scrolling.
+- **NFR-02:** Controls MUST be usable by touch and have accessible names and
+  visible keyboard focus states.
+- **NFR-03:** Missing optional data MUST NOT cause overlapping or clipped content.
+- **NFR-04:** Navigation and search SHOULD show a loading state immediately and
+  return results within 2 seconds under normal test conditions.
 
-2. US-02: As a classic game fan I want to search for a game by name so that I can find it quickly without having to explore the aisles.
+## User stories and acceptance criteria
 
-PASS/FAIL: User can enter a game name and search (case-insensitive, partial match).
-PASS/FAIL: Search results display max 20 per page, sorted alphabetically, showing thumbnail, title, and release year.
-PASS/FAIL: If no results, display: "No results found for [search].
+### US-01: Start at the front desk
 
-3. US-03: As a classic game fan, I want to see the details of a game so that I can decide whether it is something I want to explore further, even when some information is missing.
+As a visitor, I want a clear starting page so that I can browse or search.
 
-PASS/FAIL: User can select a game and view its details page.
-PASS/FAIL: Page displays: Title, Release Year, Developer, Genre, Platform(s), Image, Description, and Rating.
-PASS/FAIL: Missing data shows "Not Available", Missing images show placeholder "No image available".
-PASS/FAIL: "Back" button returns to previous page.
-## Open questions
-1. Do we support an account or not?
-2. is the website able to be accessed from a phone.
-3. Do we have an age restriction.
+- Opening the website displays the front desk.
+- Search submits to the results view.
+- **Browse Categories** opens the library.
 
-# Issues
-1. Title: Start in the front desk
-Related: FR-03, US-02
-Acceptence criteria:
-Opening the website displays the front desk.
-The front desk contains a search field.
-The front desk contains a Browse Categories button.
-Search opens the search experience.
-Browse Categories opens the library view.
+### US-02: Browse by category
 
-Owner: Abdul Sami
-size: L
+As a fan, I want categories so that I can find games without knowing their
+names.
 
-2. Title: The details of games
-Related: US-03, FR-05
-Acceptence criteria:
-The details page displays title, release year, developer, genre, platform, image, description, and rating.
-Missing fields display “Not Available.”
-Missing images display “No image available.”
-The Back button returns to the previous page.
-Owner: Eigmantas
-Size: S
+- Available categories are displayed.
+- Selecting one shows its games, 12 per page, alphabetically.
+- Cards show a thumbnail and title.
+- **Previous** and **Next** navigate valid pages only.
+- Empty categories show `No games found in this category.`
+- Selecting a game opens its details.
 
-3. Tile: The Library
-Related: FR-02, US-01
-Acceptence criteria: The aisles would have games by categories so that the user can explore through it
-Owner: Eigmantas
-Size: S
+### US-03: Search by title
 
-4. Title: The search bar
-Related: FR-04
-Acceptence criteria:
-Users can enter a search term.
-Search ignores letter casing.
-Partial title matches are returned.
-Results are sorted alphabetically.
-Owner: Abdul Sami
-Size: S
+As a fan, I want to search by title so that I can find a game quickly.
 
-5. Title: Recommendation inside details
-Related: US-03
-Acceptence criteria: When you press to see the detail of a game there should be a recommendation list which would have fimilar games
-Owner: Eigmantas
-Size: S
+- Full and partial, case-insensitive matches are returned alphabetically.
+- Results show no more than 20 games per page.
+- Cards show a thumbnail, title, and release year.
+- No matches show `No results found for "<search term>".`
+- Selecting a result opens its details.
 
-6. Title: The serach bar info
-Related: FR-04
-Acceptence criteria: IF the user searches and the data is not there it should show a message that the game is not available
-Owner: Abdul Sami
-Size: S
+### US-04: View details
 
-7. Title: details missing
-Related: US-03 
-Description: Ensure the details page displays gracefully even when some fields are missing from the data source. Acceptance criteria: Missing data fields show "Not Available".
-Owner: Abdul Sami
-Size: M
+As a fan, I want game details so that I can decide whether to explore further.
 
-8. Title: Support responsive layouts
-Description:Ensure the website works on supported desktop, laptop, tablet, and mobile screen sizes.
+- Available title, year, developer, genre, platform(s), image, description, and
+  rating are displayed.
+- Missing fields and images use the specified placeholders.
+- **Back** returns to the previous view.
+- Similar games appear when available.
 
-Acceptance criteria:
+### US-05: Use different devices
 
-The front desk is usable at each supported screen size.
-Search and category results remain readable without horizontal scrolling.
-Details pages remain usable without overlapping content.
-Buttons and search fields remain accessible on touch screens.
+As a visitor, I want the site to work on my device.
+
+- All views remain usable and readable at supported screen sizes.
+- Touch controls remain accessible.
+- Details pages do not overlap or clip content.
+- Keyboard focus is visible.
+
+## Data and errors
+
+- Empty results MUST show the specified empty-state message.
+- Missing optional fields MUST use the specified placeholders.
+- Data-loading failures MUST show a clear error and a retry or return action.
+
+## Open decisions
+
+1. Which exact categories and values will be supported?
+2. What is the game-data source and schema?
+3. How will similar games be selected?
+4. Which browsers and minimum viewport sizes are supported?
+5. Are age notices needed?
+6. Should accounts or saved games be added later?
+
+## Delivery issues
+
+| Issue | Title | Requirements | Owner | Size |
+|---|---|---|---|---|
+| #1 | Start at the front desk | FR-01–FR-05, US-01 | Abdul Sami | L |
+| #2 | Game details page | FR-18–FR-21, US-04 | Eigmantas | S |
+| #3 | Build the library | FR-06–FR-11, US-02 | Eigmantas | S |
+| #4 | Implement title search | FR-12–FR-17, US-03 | Abdul Sami | S |
+| #5 | Similar-game recommendations | FR-22, US-04 | Eigmantas | S |
+| #6 | Empty search results | FR-16, US-03 | Abdul Sami | S |
+| #7 | Missing game details | FR-19–FR-20, US-04 | Abdul Sami | M |
+| #8 | Responsive layouts | NFR-01–NFR-03, US-05 | TBD | TBD |
 
 ## Traceability
-| User story | Issues |
-|------------|--------|
-| US-01      | #2, #3, #5 |
-| US-02      | #4, #6 |
-| US-03      | #5 |
+
+| User story | Requirements | Issues |
+|---|---|---|
+| US-01 | FR-01–FR-05 | #1 |
+| US-02 | FR-06–FR-11 | #3 |
+| US-03 | FR-12–FR-17 | #4, #6 |
+| US-04 | FR-18–FR-22 | #2, #5, #7 |
+| US-05 | NFR-01–NFR-03 | #8 |
 
 ## Review notes
-Suggestion we accepted:
-THe acceptence criteria needed to be more precice and detailed
 
-Suggestion we rejected:
-We didnt really reject anything because everything it suggested was helpful and useful
-...
-Why:
-
-Why we accepted: It was useful to us to organize out project
-
-why we rejected: We didnt reject anything
-...
+Acceptance criteria were made more precise and testable. No suggestions were
+recorded as rejected.
