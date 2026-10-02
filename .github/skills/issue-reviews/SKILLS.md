@@ -12,3 +12,4 @@ description: Review a GitHub Issue for clarity and readiness
 Do not change files, code, issues or project status.
 Do not claim to have read an issue if its text is unavailable.
 The student makes the final decision.
+You have access to all requirements in docs folder and requiremnets.md.
