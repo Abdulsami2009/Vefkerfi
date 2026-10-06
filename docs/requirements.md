@@ -25,7 +25,6 @@ browsing or direct title search.
 - Age verification
 - Admin tools
 - Native mobile applications
-
 ## Functional requirements
 
 ### Front desk
