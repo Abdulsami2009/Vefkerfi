@@ -167,3 +167,5 @@ As a visitor, I want the site to work on my device.
 
 Acceptance criteria were made more precise and testable. No suggestions were
 recorded as rejected.
+
+
