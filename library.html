@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Browse the Retro Replay classic game library by shelf and category." />
+    <title>The Aisles | Retro Replay</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="library.css" />
+  </head>
+  <body class="library-page">
+    <header class="site-header library-header">
+      <a class="brand" href="index.html" aria-label="Retro Replay home">
+        <span class="brand-mark" aria-hidden="true">R</span><span>Retro Replay</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="index.html">Front desk</a>
+        <a class="nav-cta" href="index.html#search">Search games</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="aisle-hero" aria-labelledby="aisle-title">
+        <div>
+          <p class="eyebrow"><span class="eyebrow-dot"></span> The library floor</p>
+          <h1 id="aisle-title">Take a walk<br /><em>through history.</em></h1>
+          <p>Open a page, choose a genre, and browse six colorful game books at a time on each side of the library.</p>
+        </div>
+        <div class="aisle-sign" aria-hidden="true">
+          <span>WELCOME TO</span><strong>THE<br />AISLES</strong><i>✦</i>
+        </div>
+      </section>
+
+      <section class="library-content" aria-labelledby="shelves-title">
+        <div class="library-toolbar">
+          <div>
+            <p class="eyebrow">Choose a shelf</p>
+            <h2 id="shelves-title">Explore the collection</h2>
+          </div>
+          <label class="library-search">
+            <span class="sr-only">Filter games</span>
+            <input id="library-search" type="search" placeholder="Search this aisle..." />
+            <span aria-hidden="true">⌕</span>
+          </label>
+        </div>
+
+        <div class="shelf-tabs" role="group" aria-label="Game categories">
+          <button class="shelf-tab is-active" type="button" data-filter="all">All games</button>
+          <button class="shelf-tab" type="button" data-filter="Arcade">Arcade</button>
+          <button class="shelf-tab" type="button" data-filter="Action">Action</button>
+          <button class="shelf-tab" type="button" data-filter="1990s">1990s</button>
+          <button class="shelf-tab" type="button" data-filter="1980s">1980s</button>
+        </div>
+
+        <div class="aisle-status" id="aisle-status" aria-live="polite">Loading the collection...</div>
+        <div class="open-book" aria-label="Classic game books">
+          <div class="book-page book-page-left">
+            <div class="page-heading">Left page <span>01—06</span></div>
+            <div class="game-grid" id="game-grid-left"></div>
+          </div>
+          <div class="book-spine" aria-hidden="true"></div>
+          <div class="book-page book-page-right">
+            <div class="page-heading">Right page <span>07—12</span></div>
+            <div class="game-grid" id="game-grid-right"></div>
+          </div>
+        </div>
+        <div class="pagination" id="pagination" aria-label="Library pagination"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">R</span><span>Retro Replay</span></a>
+      <span>Classic games, carefully remembered.</span>
+    </footer>
+    <script src="library.js"></script>
+  </body>
+</html>
