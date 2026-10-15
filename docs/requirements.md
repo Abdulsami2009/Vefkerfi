@@ -127,8 +127,26 @@ As a visitor, I want the site to work on my device.
 
 ## Data and errors
 
+- ## Data and errors
+
+The application MUST use the approved classic-game dataset in the `00/` directory.
+
+- The primary game data source MUST be `00/games_master_dataset.json` or `00/games_master_dataset.csv`.
+- The original files in `00/` MUST NOT be modified.
+- Game titles MUST come from the dataset `title` field.
+- Release years MUST come from the dataset `release_year` field.
+- Developers MUST come from the dataset `developer` field.
+- Genres MUST come from the dataset `genre_category` field.
+- Platforms MUST come from the dataset platform fields.
+- Ratings MUST come from the dataset rating fields when available.
+- Descriptions MUST come from the dataset `description` field.
+- The application SHOULD use the available cover image for each game.
+- If a cover image is missing or fails to load, the interface MUST display:
+  `No image available`
+- Missing optional fields MUST display:
+  `Not Available`
+- ROM filenames, ROM extensions, ROM sizes, and download-related fields MUST NOT be displayed as user actions.
 - Empty results MUST show the specified empty-state message.
-- Missing optional fields MUST use the specified placeholders.
 - Data-loading failures MUST show a clear error and a retry or return action.
 
 ## Open decisions

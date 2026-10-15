@@ -12,6 +12,7 @@ People often remember bits and pieces of a game—what the characters looked lik
 What will the product do?
 
 The website will provide a collection of classic games that people can search and browse. Each game will have useful information and images to help users recognize whether it is the game they remember.
+Deap Library is not a store, emulator, or game launcher. It is an information and discovery website that helps visitors recognize and learn about classic games they remember.
 
 MVP:
 Classic Game Information Hub with search, browsing, categories, details, and simple recommendations.
@@ -22,7 +23,17 @@ Features such as user accounts, ratings, reviews, and community contributions ca
 
 
 The front page looks:
-There is a front desk in the front with two button one saying explore that takes the user to the aisle page and the other one saying search which it takes the user to the search page behind the desk there is a like an aisle showcasing some games and the front page is dark blue. 
-
+The front page uses a dark, warm library style with brown-black backgrounds, cream text, and gold accents. It includes a front desk, a featured game shelf, a search action, and a button that opens the library aisles.
 
 The aisles page:
+The aisle page is the main browsing area of the website. Users can explore classic games by genre, platform, and release decade. Games are displayed as cards inside a book-inspired library layout. Users can move between pages, open individual game details, and return to the front desk.
+Displays the available categories.
+Lets users browse games by genre, platform, and release decade.
+Shows games in a visual grid or shelf/book layout.
+Displays 12 games per category page.
+Sorts games alphabetically by title.
+Lets users open a game details page.
+Supports Previous and Next navigation.
+Works on desktop and mobile.
+Uses the approved dataset rather than mock data.
+
