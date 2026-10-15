@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Deep Library / Aisle 01</title>
+<style>
+:root{--bg:#0d0b10;--cream:#f1e6cf;--gold:#e0b36a;--ink:#2a1d14;--paper:#efe2c6;--paper2:#e2d1ae;--leather:#3a1f16;--leather2:#24120d;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d0b10}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 0%,#2a1c1a 0,var(--bg) 60%);color:var(--cream);font-family:Georgia,'Times New Roman',serif}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px 28px;letter-spacing:.18em;font-size:13px;text-transform:uppercase}
+header a{color:var(--gold);border:1px solid var(--gold);padding:8px 14px;border-radius:6px;text-decoration:none;letter-spacing:.04em;text-transform:none}
+header a:hover{background:rgba(224,179,106,.15)}
+.title{text-align:center;padding:6px 16px 22px}
+.title small{color:var(--gold);letter-spacing:.3em;font-size:11px;text-transform:uppercase}
+.title h1{margin:6px 0;font-weight:400;font-size:clamp(32px,5vw,52px)}
+.title p{margin:0;opacity:.75}
+.book{position:relative;max-width:1100px;margin:0 auto 40px;padding:18px;border-radius:14px;background:linear-gradient(145deg,var(--leather),var(--leather2));box-shadow:0 30px 60px rgba(0,0,0,.6),inset 0 0 0 2px rgba(224,179,106,.25)}
+.spread{display:grid;grid-template-columns:1fr 1fr;position:relative;perspective:2000px;border-radius:6px;overflow:hidden;box-shadow:0 0 0 1px rgba(0,0,0,.5)}
+.page{position:relative;padding:28px 26px 26px;background:linear-gradient(90deg,var(--paper2),var(--paper) 14%,var(--paper));color:var(--ink);min-height:540px}
+.page.right{background:linear-gradient(270deg,var(--paper2),var(--paper) 14%,var(--paper))}
+.page.left::after,.page.right::before{content:"";position:absolute;top:0;bottom:0;width:46px;pointer-events:none}
+.page.left::after{right:0;background:linear-gradient(270deg,rgba(0,0,0,.3),transparent)}
+.page.right::before{left:0;background:linear-gradient(90deg,rgba(0,0,0,.3),transparent)}
+.spine{position:absolute;left:50%;top:0;bottom:0;width:3px;background:rgba(0,0,0,.35);transform:translateX(-50%);z-index:3}
+.folio{font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-align:center;opacity:.6;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:#1f1719;border-radius:4px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,.35);color:var(--cream);transition:transform .2s}
+.card:hover{transform:translateY(-3px) rotate(-.4deg)}
+.cover{aspect-ratio:4/3;display:grid;place-items:center;font-size:40px;color:rgba(255,255,255,.7);position:relative}
+.cover::after{content:"";position:absolute;inset:12px;border:1px solid rgba(255,255,255,.3)}
+.meta{padding:10px 12px 14px;min-height:78px}
+.meta b{display:block;font-size:15px;line-height:1.25;color:#fbe9c4}
+.meta span{font-size:12px;opacity:.65;font-family:system-ui,sans-serif}
+.controls{display:flex;justify-content:center;align-items:center;gap:22px;padding:18px 0 4px;flex-wrap:wrap}
+.count{font-size:12px;letter-spacing:.2em;text-transform:uppercase;opacity:.7;min-width:170px;text-align:center}
+button{min-width:170px}
+.turn-out{animation:out .28s ease-in forwards}
+.turn-in{animation:inn .32s ease-out}
+.left-pg{transform-origin:right center}.right-pg{transform-origin:left center}
+@keyframes out{to{transform:rotateY(-70deg);opacity:0}}
+@keyframes inn{from{transform:rotateY(60deg);opacity:0}to{transform:none;opacity:1}}
+@media (max-width:760px){
+ .spread{grid-template-columns:1fr}.spine{display:none}
+ .page{min-height:0;padding:22px 16px}.page.left::after,.page.right::before{display:none}
+ .grid{gap:12px}.cover{font-size:30px}
+ header{padding:14px 16px}
+ .book{margin:0 8px 30px;padding:10px}.controls{gap:10px}button{min-width:0;flex:1}.count{order:-1;flex-basis:100%}
+}
+@media (prefers-reduced-motion:reduce){.turn-out,.turn-in{animation:none}}
+</style>
+</head>
+<body>
+<header><span>Deep Library / Aisle 01</span><a href="#">Back to front desk</a></header>
+<div class="title"><small>The classics, opened</small><h1>Browse the collection</h1><p>Turn the page and rediscover a favourite.</p></div>
+
+<main class="book">
+ <div class="spread">
+  <section class="page left"><div class="folio" id="lf"></div><div class="grid left-pg" id="gridL"></div></section>
+  <div class="spine"></div>
+  <section class="page right"><div class="folio" id="rf"></div><div class="grid right-pg" id="gridR"></div></section>
+ </div>
+ <div class="controls">
+  <button id="prev">← Previous page</button>
+  <div class="count" id="count"></div>
+  <button id="next">Next page →</button>
+ </div>
+</main>
+
+<script>
+const games=[["Super Mario Bros.",1985],["The Legend of Zelda",1986],["Sonic the Hedgehog",1991],["Street Fighter II",1991],["Donkey Kong Country",1994],["Chrono Trigger",1995],["Final Fantasy VII",1997],["Castlevania: SOTN",1997],["Metal Gear Solid",1998],["Pokémon Red",1998],["The Sims",2000],["Halo: Combat Evolved",2001],
+["Mega Man 2",1988],["Tetris",1989],["Super Mario World",1990],["Mortal Kombat",1992],["Doom",1993],["Super Metroid",1994],["Resident Evil",1996],["Super Mario 64",1996],["GoldenEye 007",1997],["Half-Life",1998],["Ocarina of Time",1998],["Diablo II",2000]];
+const hues=[[14,32],[120,48],[215,45],[10,38],[110,20],[260,350],[220,40],[280,340],[100,30],[5,45],[190,42],[95,50]];
+const PER=6,SPREAD=PER*2,spreads=Math.ceil(games.length/SPREAD);
+let p=0,busy=false;
+const gL=document.getElementById('gridL'),gR=document.getElementById('gridR'),prev=document.getElementById('prev'),next=document.getElementById('next');
+const cards=(s)=>games.slice(s,s+PER).map((g,i)=>{const n=s+i,h=hues[n%hues.length];
+ return `<article class="card"><div class="cover" style="background:linear-gradient(135deg,hsl(${h[0]} 45% 32%),hsl(${h[1]} 40% 42%))">${String(n+1).padStart(2,'0')}</div><div class="meta"><b>${g[0]}</b><span>Classic edition · ${g[1]}</span></div></article>`}).join('');
+function render(){
+ const s=p*SPREAD;
+ gL.innerHTML=cards(s);gR.innerHTML=cards(s+PER);
+ document.getElementById('lf').textContent='Page '+(p*2+1);
+ document.getElementById('rf').textContent='Page '+(p*2+2);
+ document.getElementById('count').textContent='Games '+(s+1)+'–'+Math.min(s+SPREAD,games.length)+' of '+games.length;
+ prev.disabled=p===0;next.disabled=p===spreads-1;
+}
+function go(d){
+ const t=p+d;if(busy||t<0||t>=spreads)return;busy=true;
+ gL.className='grid left-pg turn-out';gR.className='grid right-pg turn-out';
+ setTimeout(()=>{p=t;render();gL.className='grid left-pg turn-in';gR.className='grid right-pg turn-in';
+  setTimeout(()=>{gL.className='grid left-pg';gR.className='grid right-pg';busy=false},330)},280);
+}
+prev.onclick=()=>go(-1);next.onclick=()=>go(1);
+addEventListener('keydown',e=>{if(e.key==='ArrowLeft')go(-1);if(e.key==='ArrowRight')go(1)});
+render();
+</script>
+</body>
+</html>
